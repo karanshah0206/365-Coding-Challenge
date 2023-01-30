@@ -136,6 +136,15 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="data.txt" />
+    <Text Include="Test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Agent.h" />
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Search.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

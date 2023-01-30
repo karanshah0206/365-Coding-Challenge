@@ -23,5 +23,28 @@
     <Text Include="data.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Test.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Node.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Search.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
