@@ -81,6 +81,14 @@ struct Agent {
 		return adjacentNodes;
 	}
 
+	void removeGoal(Cell aGoalCell) {
+		std::vector<Cell> lGoals;
+		for (Cell& cell : fGoals)
+			if (!(cell == aGoalCell))
+				lGoals.push_back(cell);
+		fGoals = lGoals;
+;	}
+
 	bool endTest(Cell aCell) const { return aCell == fEnd; }
 	bool endTest(Node* aNode) const { return endTest(aNode->fCoordinates); }
 

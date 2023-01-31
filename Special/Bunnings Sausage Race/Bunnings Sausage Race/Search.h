@@ -33,8 +33,13 @@ struct Search {
 		fGUI->addPath();
 	}
 
+	bool searchEndTest(Node* aNode) {
+		if (fAgent.fGoals.size() == 0) return fAgent.endTest(aNode);
+		else return fAgent.goalTest(aNode);
+	}
+
 	Node* dfs() {
-		if (fAgent.endTest(fAgent.fState)) {
+		if (searchEndTest(fAgent.fState)) {
 			fTree.push_back(*fAgent.fState);
 			return &fTree[0];
 		}
@@ -47,7 +52,7 @@ struct Search {
 			fGUI->addVisitedCell(current->fCoordinates);
 			std::vector<Node> children = fAgent.getAdjacentNodes(current);
 			for (size_t i = 0; i < children.size(); i++) {
-				if (fAgent.endTest(&children[i])) {
+				if (searchEndTest(&children[i])) {
 					fTree.push_back(children[i]);
 					return &fTree[fTree.size() - 1];
 				}
@@ -59,7 +64,7 @@ struct Search {
 	}
 
 	Node* bfs() {
-		if (fAgent.endTest(fAgent.fState)) {
+		if (searchEndTest(fAgent.fState)) {
 			fTree.push_back(*fAgent.fState);
 			return &fTree[0];
 		}
@@ -73,7 +78,7 @@ struct Search {
 			std::vector<Node> children = fAgent.getAdjacentNodes(current);
 			for (int i = children.size() - 1; i >= 0; i--) {
 				if (isUnexplored(children[i])) {
-					if (fAgent.endTest(&children[i])) {
+					if (searchEndTest(&children[i])) {
 						fTree.push_back(children[i]);
 						return &fTree[fTree.size() - 1];
 					}

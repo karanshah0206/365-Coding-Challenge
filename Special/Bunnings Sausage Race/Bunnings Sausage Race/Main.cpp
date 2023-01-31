@@ -25,11 +25,23 @@ int main(int argc, char* argv[]) {
 	Agent lAgent(datastream);
 	GUI* lGUI = new GUI("Bunnings Sausage Race", lAgent);
 	Search lSearch(argv[2], lAgent, lGUI);
+	bool endReached = false;
 
-	Node* lFinalNode = lSearch.search();
-	if (lFinalNode == nullptr) std::cout << "No solution found.";
-	else lSearch.tracePath(lFinalNode);
-	std::cout << std::endl;
+	while (lAgent.fGoals.size() != 0 || !endReached) {
+		Node* lFinalNode = lSearch.search();
+		if (lFinalNode == nullptr) {
+			std::cout << "No solution found.";
+			break;
+		}
+		else {
+			lSearch.tracePath(lFinalNode);
+			lAgent.removeGoal(lFinalNode->fCoordinates);
+			lFinalNode->fParent = nullptr;
+			if (lAgent.endTest(lFinalNode)) endReached = true;
+			lGUI->reset();
+		}
+		std::cout << std::endl;
+	}
 
 	while (lGUI->fRunning) lGUI->handleEvents();
 

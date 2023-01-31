@@ -115,9 +115,14 @@ struct GUI {
 
 	void reset() {
 		SDL_Delay(500);
-		for (GUI_Cell& cell : fCells)
-			if (cell.fColor.r == 255 && cell.fColor.g == 255 && cell.fColor.b == 0)
+		for (GUI_Cell& cell : fCells) {
+			if (cell.fColor.r == 255 && cell.fColor.g == 255 && cell.fColor.b == 0) cell.fColor.b = 255;
+			else if (cell.fColor.r == 0 && cell.fColor.g == 255 && cell.fColor.b == 0) {
+				cell.fColor.r = 255;
 				cell.fColor.b = 255;
+			}
+		}
+		addPath();
 		render(500);
 	}
 
